@@ -49,24 +49,24 @@ if (WhipTail::isAvailable()) {
      * Demo password box
      */
     $whipTail =  new WhipTail();
-//    $whipTail
-//        ->setOption($whipTail::OPTION_PASSWORD_BOX)
-//        ->setBoxOption('title', 'Password')
-//        ->setMessage('new password');
-//
-//    $whipTail->run();
-//
-//    echo sprintf("[passwordbox] Your new password is: %s\n", $whipTail->getResult());
-//
-//    /**
-//     * Demo info box
-//     */
-//    $whipTail
-//        ->setOption($whipTail::OPTION_INFO_BOX)
-//        ->setBoxOption('title', 'Info Box')
-//        ->setMessage('Some info');
-//
-//    $whipTail->run();
+    $whipTail
+        ->setOption($whipTail::OPTION_PASSWORD_BOX)
+        ->setBoxOption('title', 'Password')
+        ->setMessage('new password');
+
+    $whipTail->run();
+
+    echo sprintf("[passwordbox] Your new password is: %s\n", $whipTail->getResult());
+
+    /**
+     * Demo info box
+     */
+    $whipTail
+        ->setOption($whipTail::OPTION_INFO_BOX)
+        ->setBoxOption('title', 'Info Box')
+        ->setMessage('Some info');
+
+    $whipTail->run();
 
     /**
      * Demo Gauge
@@ -95,115 +95,113 @@ if (WhipTail::isAvailable()) {
     $whipTail->run();
 
 
-//    /**
-//     * Demo yes/no
-//     */
-//    $whipTail
-//        ->setOption($whipTail::OPTION_YES_NO)
-//        ->setBoxOption('title', 'Yes or No')
-//        ->setMessage('Is it working?');
-//
-//    $whipTail->run();
-//
-//    echo sprintf("[yesno] you choose: %s\n", ($whipTail->getExitCode() === 1) ? "no" : "yes" );
-//
-//    /**
-//     * Demo text box
-//     */
-//    file_put_contents('./tmp.txt', $text);
-//
-//    $whipTail
-//        ->setOption($whipTail::OPTION_TEXT_BOX)
-//        ->setBoxOption('title', 'Text Box')
-//        ->setBoxOption('scrolltext')
-//        ->setFile('./tmp.txt');
-//
-//    $whipTail->run();
-//
-//    unlink('./tmp.txt');
-//
-//    /**
-//     * Demo message box
-//     */
-//    $whipTail
-//        ->setOption($whipTail::OPTION_MSG_BOX)
-//        ->setBoxOption('title', 'Message Box')
-//        ->setBoxOption('scrolltext')
-//        ->setMessage($text);
-//
-//    $whipTail->run();
-//
-//    /**
-//     * Demo input box
-//     */
-//    $whipTail
-//        ->setOption($whipTail::OPTION_INPUT_BOX)
-//        ->setBoxOption('title', 'Input Box')
-//        ->setMessage('Some Input');
-//
-//    $whipTail->run();
-//
-//    echo sprintf("[inputbox] give input: %s\n", $whipTail->getResult());
-//
-//    /**
-//     * Demo Menu
-//     */
-//
-//    $whipTail
-//        ->setOption($whipTail::OPTION_MENU)
-//        ->setBoxOption('title', 'Menu')
-//        ->setMessage('Select item')
-//        ->setList($list2);
-//
-//    $whipTail->run();
-//
-//    $result = $whipTail->getResult();
-//
-//    echo sprintf("[menu] You selected: %s\n", $result);
-//
-//
-//    /**
-//     * Demo radio list
-//     */
-//
-//    $whipTail
-//        ->setOption($whipTail::OPTION_RADIO_LIST)
-//        ->setBoxOption('title', 'RadioList')
-//        ->setMessage('Select item')
-//        ->setList($list1);
-//
-//    $whipTail->run();
-//
-//    $result = $whipTail->getResult();
-//
-//    echo sprintf("[radiolist] You selected: %s\n", $result);
-//
-//    /**
-//     * Demo check list
-//     *
-//     * will set item that was selected
-//     * with radio option to on
-//     *
-//     */
-//
-//    if (isset($result)) {
-//        foreach($list1 as &$value) {
-//            if ($value[0] === $result) {
-//                $value[2] = "ON";
-//            }
-//        }
-//    }
-//
-//    $whipTail
-//        ->setOption($whipTail::OPTION_CHECK_LIST)
-//        ->setBoxOption('title', 'CheckList')
-//        ->setBoxOption('separate-output')
-//        ->setMessage('Select item(s)')
-//        ->setList($list1);
-//
-//    $whipTail->run();
-//
-//    echo sprintf("[checklist] You selected: %s\n", print_r(array_filter(explode("\n", $whipTail->getResult())), true));
+    /**
+     * Demo yes/no
+     */
+    $whipTail
+        ->setOption($whipTail::OPTION_YES_NO)
+        ->setBoxOption('title', 'Yes or No')
+        ->setMessage('Is it working?');
+
+    $whipTail->run();
+
+    echo sprintf("[yesno] you choose: %s\n", ($whipTail->getExitCode() === 1) ? "no" : "yes" );
+
+    /**
+     * Demo text box
+     */
+    file_put_contents('./tmp.txt', $text);
+
+    $whipTail
+        ->setOption($whipTail::OPTION_TEXT_BOX)
+        ->setBoxOption('title', 'Text Box')
+        ->setBoxOption('scrolltext')
+        ->setFile('./tmp.txt');
+
+    $whipTail->run();
+
+    unlink('./tmp.txt');
+
+    /**
+     * Demo message box
+     */
+    $whipTail
+        ->setOption($whipTail::OPTION_MSG_BOX)
+        ->setBoxOption('title', 'Message Box')
+        ->setBoxOption('scrolltext')
+        ->setMessage($text);
+
+    $whipTail->run();
+
+    /**
+     * Demo input box
+     */
+    $whipTail
+        ->setOption($whipTail::OPTION_INPUT_BOX)
+        ->setBoxOption('title', 'Input Box')
+        ->setMessage('Some Input');
+
+    $whipTail->run();
+
+    echo sprintf("[inputbox] give input: %s\n", $whipTail->getResult());
+
+    /**
+     * Demo Menu
+     */
+
+    $whipTail
+        ->setOption($whipTail::OPTION_MENU)
+        ->setBoxOption('title', 'Menu')
+        ->setMessage('Select item')
+        ->setList($list2);
+
+    $whipTail->run();
+
+    $result = $whipTail->getResult();
+
+    echo sprintf("[menu] You selected: %s\n", $result);
+
+
+    /**
+     * Demo radio list
+     */
+    $whipTail
+        ->setOption($whipTail::OPTION_RADIO_LIST)
+        ->setBoxOption('title', 'RadioList')
+        ->setMessage('Select item')
+        ->setList($list1);
+
+    $whipTail->run();
+
+    $result = $whipTail->getResult();
+
+    echo sprintf("[radiolist] You selected: %s\n", $result);
+
+    /**
+     * Demo check list
+     *
+     * will set item that was selected
+     * with radio option to on
+     *
+     */
+    if (isset($result)) {
+        foreach($list1 as &$value) {
+            if ($value[0] === $result) {
+                $value[2] = "ON";
+            }
+        }
+    }
+
+    $whipTail
+        ->setOption($whipTail::OPTION_CHECK_LIST)
+        ->setBoxOption('title', 'CheckList')
+        ->setBoxOption('separate-output')
+        ->setMessage('Select item(s)')
+        ->setList($list1);
+
+    $whipTail->run();
+
+    echo sprintf("[checklist] You selected: %s\n", print_r(array_filter(explode("\n", $whipTail->getResult())), true));
 }
 
 
