@@ -77,11 +77,16 @@ if (WhipTail::isAvailable()) {
         ->addCallBack(function(){
             sleep(1);
         })
-        ->addCallBack(function(){
-            sleep(5);
+        ->addCallBack(function(\WhipTail\Helpers\Progress $progress){
+
+            for($i = 0; $i < 100; $i++){
+                $progress->advance();
+                sleep(1);
+            }
+
         })
         ->addCallBack(function(){
-            sleep(2);
+            sleep(1);
         })
         ->setMessage('doing....');
 
