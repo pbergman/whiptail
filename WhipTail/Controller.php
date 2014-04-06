@@ -121,7 +121,6 @@ class Controller
 
         $isGauge =  ($this->command->getName() === 'gauge');
 
-
         if (empty($this->command)) {
             throw new \Exception('Need to define a option first');
         }
