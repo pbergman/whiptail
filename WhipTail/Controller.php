@@ -94,7 +94,6 @@ class Controller
      */
     public function setOption($option)
     {
-
         if (array_key_exists($option, $this->options)) {
 
             if (class_exists($this->options[$option])) {
@@ -118,7 +117,6 @@ class Controller
      */
     public function run()
     {
-
         $isGauge =  ($this->command->getName() === 'gauge');
 
         if (empty($this->command)) {
