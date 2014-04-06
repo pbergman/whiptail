@@ -6,17 +6,26 @@
 
 namespace WhipTail\Helpers;
 
+/**
+ * Class Progress
+ *
+ * progress helper that is returned as first
+ * argument of the defined callback from Gauge
+ *
+ * @package WhipTail\Helpers
+ */
 class Progress
 {
     /** @var resource */
-    protected $stdin = null;
+    protected $stdin    = null;
     /** @var  int */
-    protected $limit = 0;
+    protected $limit    = 0;
     /** @var null|int  */
-    protected $start = null;
+    protected $start    = null;
     /** @var int  */
-    protected $current = 0;
-
+    protected $current  = 0;
+    /** @var int  */
+    protected $parts    = 100;
     /**
      * @return resource
      */
@@ -87,13 +96,14 @@ class Progress
         $this->start   = null;
         $this->limit   = 0;
         $this->current = 0;
+        $this->parts   = 100;
 
         return $this;
     }
 
     /**
-     * will advance the progress bar by 1/100 between
-     * start of this current and $limit
+     * will advance the progress bar by 1 part
+     * between start of this current and limit
      *
      * @throws \Exception
      */
@@ -107,10 +117,26 @@ class Progress
             $this->start =  $this->current;
         }
 
-        $this->current += ($this->limit-$this->start)/100;
+        $this->current += ($this->limit-$this->start)/$this->parts;
 
         fwrite($this->stdin, sprintf("%d\n", round($this->current)));
 
+    }
+
+    /**
+     * @return int
+     */
+    public function getParts()
+    {
+        return $this->parts;
+    }
+
+    /**
+     * @param int $parts
+     */
+    public function setParts($parts)
+    {
+        $this->parts = $parts;
     }
 
 }
