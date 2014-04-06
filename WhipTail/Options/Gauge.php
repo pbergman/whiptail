@@ -15,7 +15,7 @@ use WhipTail\Helpers\Progress;
  * New percentages are read from standard input, one integer per line. The meter is updated to
  * reflect each new percentage. If stdin is XXX, then subsequent lines up to another XXX are
  * used for a new prompt. The gauge exits when EOF is reached on stdin.
- * 
+ *
  * @package WhipTail\Options
  */
 class gauge extends BaseOption
