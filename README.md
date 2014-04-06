@@ -1,5 +1,5 @@
 # whiptail
-a php cli wrapper for linux whiptail
+a php cli wrapper for linux [whiptail](http://linux.die.net/man/1/whiptail)
 
 ## Installation
 The recommended way to install is [through composer](http://getcomposer.org).
