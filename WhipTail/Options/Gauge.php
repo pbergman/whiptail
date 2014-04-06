@@ -9,6 +9,8 @@ namespace WhipTail\Options;
 //for i in {1..100}; do echo $i; sleep 1; done | whiptail --title "Backup" --gauge "Test" 20 70 0
 
 
+use WhipTail\Helpers\Progress;
+
 class gauge extends BaseOption
 {
     /** @var array  */
@@ -39,7 +41,7 @@ class gauge extends BaseOption
     }
 
     /**
-     * @param $stdin
+     * @param resource $stdin
      *
      * @throws \Exception
      */
@@ -49,10 +51,18 @@ class gauge extends BaseOption
             throw new \Exception('Given argument needs to be a valid resource');
         }
 
-        $advance = round(100/count($this->callBacks));
-        $current = 0;
+        $advance  = round(100/count($this->callBacks));
+        $current  = 0;
+        $progress = new Progress();
+        $progress->setStdin($stdin);
 
         foreach ($this->callBacks as $id => $callBack) {
+
+            $progress->reset()
+                     ->setCurrent($current)
+                     ->setLimit($current + $advance);
+
+            array_unshift($callBack[1], $progress);
 
             if( false !== call_user_func_array($callBack[0], $callBack[1])){
 
