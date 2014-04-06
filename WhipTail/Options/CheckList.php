@@ -44,9 +44,9 @@ class CheckList extends BaseOption
     }
 
     /**
-     * give al whole list at once
+     * add a array stack as list
      *
-     * should be like
+     * pattern should be like
      *
      * array(
      *  array("ITEM1", "Some desc", "ON"),
@@ -61,13 +61,11 @@ class CheckList extends BaseOption
     public function setList(array $stack)
     {
         foreach($stack as $item) {
-
             if (count($item) == 3) {
                 $this->addToList($item[0], $item[1], $item[2]);
             } else {
                 throw new \InvalidArgumentException(sprintf("Given list item is invalid. Expected format: %s given: %s\n", print_r(array("ITEM1", "Some desc", "ON"), true), print_r($item, true)));
             }
-
         }
     }
 

@@ -23,7 +23,7 @@ class BaseOption
     protected $message = '';
     /** @var string  */
     protected $name    = '';
-
+    /** @var array  */
     protected $boxOptions = array(
         'clear'             => null,  //clear screen on exit
         'defaultno'         => null,  //default no button

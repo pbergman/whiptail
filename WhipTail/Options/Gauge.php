@@ -6,11 +6,18 @@
 
 namespace WhipTail\Options;
 
-//for i in {1..100}; do echo $i; sleep 1; done | whiptail --title "Backup" --gauge "Test" 20 70 0
-
-
 use WhipTail\Helpers\Progress;
 
+/**
+ * Class gauge
+ *
+ * A gauge box displays a meter along the bottom of the box. The meter indicates a percentage.
+ * New percentages are read from standard input, one integer per line. The meter is updated to
+ * reflect each new percentage. If stdin is XXX, then subsequent lines up to another XXX are
+ * used for a new prompt. The gauge exits when EOF is reached on stdin.
+ * 
+ * @package WhipTail\Options
+ */
 class gauge extends BaseOption
 {
     /** @var array  */
