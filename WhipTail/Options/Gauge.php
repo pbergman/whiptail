@@ -18,7 +18,7 @@ use WhipTail\Helpers\Progress;
  *
  * @package WhipTail\Options
  */
-class gauge extends BaseOption
+class Gauge extends BaseOption
 {
     /** @var array  */
     protected $name       = 'gauge';
