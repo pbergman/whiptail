@@ -82,8 +82,8 @@ if (WhipTail::isAvailable()) {
             $progress->setParts(5);
 
             for($i = 0; $i < 5; $i++){
-                $progress->advance();
                 sleep(1);
+                $progress->advance();
             }
 
         })
