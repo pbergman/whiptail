@@ -54,49 +54,39 @@ class gauge extends BaseOption
      */
     public function process($stdin)
     {
-        if (!is_resource($stdin)) {
-            throw new \Exception('Given argument needs to be a valid resource');
-        }
+        if (is_resource($stdin)) {
 
-        $advance  = round(100/count($this->callBacks));
-        $current  = 0;
-        $progress = new Progress();
-        $progress->setStdin($stdin);
+            $advance  = round(100/count($this->callBacks));
+            $current  = 0;
+            $progress = new Progress();
+            $progress->setStdin($stdin);
 
-        foreach ($this->callBacks as $id => $callBack) {
+            foreach ($this->callBacks as $id => $callBack) {
 
-            $progress->reset()
-                     ->setCurrent($current)
-                     ->setLimit($current + $advance);
+                $progress->reset()
+                         ->setCurrent($current)
+                         ->setLimit($current + $advance);
 
-            array_unshift($callBack[1], $progress);
+                array_unshift($callBack[1], $progress);
 
-            if( false !== call_user_func_array($callBack[0], $callBack[1])){
+                if( false !== call_user_func_array($callBack[0], $callBack[1])){
 
-                $current += $advance;
+                    $current += $advance;
 
-                if ($id == (count($this->callBacks) - 1)){
+                    if ($id == (count($this->callBacks) - 1)){
 
-                    fwrite($stdin, "100\n");
-
-                    if (is_resource($stdin)) {
+                        fwrite($stdin, "100\n");
                         fclose($stdin);
+
+                    } else {
+                        fwrite($stdin, "$current\n");
                     }
 
                 } else {
-                    fwrite($stdin, "$current\n");
-                }
-
-            } else {
-
-                if (is_resource($stdin)) {
                     fclose($stdin);
+                    throw new \Exception('Failed to run callback');
                 }
-
-                throw new \Exception('Failed to run callback');
-
             }
-
         }
     }
 
