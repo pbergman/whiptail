@@ -8,7 +8,7 @@ namespace WhipTail;
 
 class Controller
 {
-    /** @var  Options\BaseOption */
+    /** @var  Options\BaseOption|Options\CheckList|Options\Gauge|Options\InfoBox|Options\InputBoX|Options\Menu|Options\MsgBox|Options\PasswordBox|Options\RadioList|Options\TextBox|Options\YesNo */
     private $command;
     /** @var string|null  */
     private $output = null;
@@ -160,9 +160,9 @@ class Controller
 
                     if($status['running'] === false) {
 
-                        $this->output = stream_get_contents($pipes[2]);
-                        fclose($pipes[2]);
+                        $this->output   = stream_get_contents($pipes[2]);
                         $this->exitCode = $status['exitcode'];
+                        fclose($pipes[2]);
                         break;
 
                     } else {
