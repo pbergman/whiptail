@@ -4,7 +4,7 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
 /**
  * Class CheckList
@@ -14,7 +14,7 @@ namespace WhipTail\Options;
  * initial on/off state of each entry is specified by status. On exit, a list of the tag
  * strings of those entries that are turned on will be printed on stderr
  *
- * @package WhipTail\Options
+ * @package PBergman\WhipTail\Options
  */
 class CheckList extends BaseOption
 {

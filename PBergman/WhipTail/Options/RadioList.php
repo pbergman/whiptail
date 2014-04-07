@@ -4,7 +4,7 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
 /**
  * Class RadioList
@@ -12,7 +12,7 @@ namespace WhipTail\Options;
  * A radiolist box is similar to a menu box. The only difference is that you can indicate
  * which entry is currently selected, by setting its status to on.
  *
- * @package WhipTail\Options
+ * @package PBergman\WhipTail\Options
  */
 class RadioList extends BaseOption
 {

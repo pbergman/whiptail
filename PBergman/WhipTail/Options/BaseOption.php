@@ -4,7 +4,7 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
 /**
  * Class BaseOption

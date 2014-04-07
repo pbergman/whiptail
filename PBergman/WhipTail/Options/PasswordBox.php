@@ -4,7 +4,7 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
 /**
  * Class PasswordBox
@@ -15,7 +15,7 @@ namespace WhipTail\Options;
  * snoopers. Also, it is very confusing to the user to provide them with a default password they
  * cannot see. For these reasons, using "init" is highly discouraged.
  *
- * @package WhipTail\Options
+ * @package PBergman\WhipTail\Options
  */
 class PasswordBox extends BaseOption
 {

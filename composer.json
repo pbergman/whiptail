@@ -13,6 +13,6 @@
 
     },
     "autoload": {
-        "psr-0": { "WhipTail\\" : ""   }
+        "psr-0": { "PBergman\\WhipTail\\" : ""   }
     }
 }

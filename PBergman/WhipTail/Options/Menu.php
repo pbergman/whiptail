@@ -4,7 +4,7 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
 /**
  * Class Menu
@@ -19,7 +19,7 @@ namespace WhipTail\Options;
  * be scrolled if there are more entries than that. When whiptail exits, the tag of
  * the chosen menu entry will be printed on stderr.
  *
- * @package WhipTail\Options
+ * @package PBergman\WhipTail\Options
  */
 class Menu extends BaseOption
 {

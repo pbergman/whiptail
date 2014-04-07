@@ -6,8 +6,7 @@
 
 require_once dirname(__FILE__).'/vendor/autoload.php';
 
-use WhipTail\Controller as WhipTail;
-
+use PBergman\WhipTail\Controller as WhipTail;
 
 $text = <<<EOF
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt semper nisl et pulvinar. Vestibulum vel ante vel sem rhoncus gravida. Donec ornare tristique felis, ac varius justo interdum quis. Duis iaculis eget nulla vel lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec hendrerit erat non dui commodo, ut vehicula lectus hendrerit. Donec facilisis libero sapien, nec scelerisque dolor volutpat in. Cras molestie lorem in lectus venenatis mattis. Ut malesuada at elit nec blandit. Ut euismod, est sed ullamcorper luctus, ipsum arcu bibendum lorem, nec elementum lectus metus sit amet purus. Nam vel nulla purus. Pellentesque lacinia lacus ac ligula ultricies, non luctus massa ornare.
@@ -77,7 +76,7 @@ if (WhipTail::isAvailable()) {
         ->addCallBack(function(){
             sleep(1);
         })
-        ->addCallBack(function(\WhipTail\Helpers\Progress $progress){
+        ->addCallBack(function(PBergman\WhipTail\Helpers\Progress $progress){
 
             $progress->setParts(5);
 
@@ -188,6 +187,8 @@ if (WhipTail::isAvailable()) {
         foreach($list1 as &$value) {
             if ($value[0] === $result) {
                 $value[2] = "ON";
+            } else {
+                $value[2] = "OFF";
             }
         }
     }

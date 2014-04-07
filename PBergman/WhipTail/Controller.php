@@ -4,11 +4,11 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail;
+namespace PBergman\WhipTail;
 
 class Controller
 {
-    /** @var  Options\BaseOption|Options\CheckList|Options\Gauge|Options\InfoBox|Options\InputBoX|Options\Menu|Options\MsgBox|Options\PasswordBox|Options\RadioList|Options\TextBox|Options\YesNo */
+    /** @var  Options\BaseOption|Options\Gauge */
     private $command;
     /** @var string|null  */
     private $output = null;
@@ -30,16 +30,16 @@ class Controller
     const OPTION_YES_NO         = 9;
 
     private $options = array(
-       self::OPTION_CHECK_LIST    => 'WhipTail\Options\CheckList',
-       self::OPTION_GAUGE         => 'WhipTail\Options\Gauge',
-       self::OPTION_INFO_BOX      => 'WhipTail\Options\InfoBox',
-       self::OPTION_INPUT_BOX     => 'WhipTail\Options\InputBox',
-       self::OPTION_MENU          => 'WhipTail\Options\Menu',
-       self::OPTION_MSG_BOX       => 'WhipTail\Options\MsgBox',
-       self::OPTION_PASSWORD_BOX  => 'WhipTail\Options\PasswordBox',
-       self::OPTION_RADIO_LIST    => 'WhipTail\Options\RadioList',
-       self::OPTION_TEXT_BOX      => 'WhipTail\Options\TextBox',
-       self::OPTION_YES_NO        => 'WhipTail\Options\YesNo',
+       self::OPTION_CHECK_LIST    => '\Options\CheckList',
+       self::OPTION_GAUGE         => '\Options\Gauge',
+       self::OPTION_INFO_BOX      => '\Options\InfoBox',
+       self::OPTION_INPUT_BOX     => '\Options\InputBox',
+       self::OPTION_MENU          => '\Options\Menu',
+       self::OPTION_MSG_BOX       => '\Options\MsgBox',
+       self::OPTION_PASSWORD_BOX  => '\Options\PasswordBox',
+       self::OPTION_RADIO_LIST    => '\Options\RadioList',
+       self::OPTION_TEXT_BOX      => '\Options\TextBox',
+       self::OPTION_YES_NO        => '\Options\YesNo',
     );
 
 
@@ -96,8 +96,10 @@ class Controller
     {
         if (array_key_exists($option, $this->options)) {
 
-            if (class_exists($this->options[$option])) {
-                $this->command = new $this->options[$option];
+            $className = __NAMESPACE__ . $this->options[$option];
+
+            if (class_exists($className)) {
+                $this->command = new $className;
             }
 
         } else {
@@ -203,7 +205,7 @@ class Controller
     }
 
     /**
-     * whiptail prints default to stderr
+     * return whiptails output result
      */
     public function getResult()
     {

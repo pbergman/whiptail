@@ -4,9 +4,9 @@
  * @copyright Philip Bergman
  */
 
-namespace WhipTail\Options;
+namespace PBergman\WhipTail\Options;
 
-use WhipTail\Helpers\Progress;
+use PBergman\WhipTail\Helpers\Progress;
 
 /**
  * Class gauge
@@ -16,7 +16,7 @@ use WhipTail\Helpers\Progress;
  * reflect each new percentage. If stdin is XXX, then subsequent lines up to another XXX are
  * used for a new prompt. The gauge exits when EOF is reached on stdin.
  *
- * @package WhipTail\Options
+ * @package PBergman\WhipTail\Options
  */
 class Gauge extends BaseOption
 {
