@@ -95,6 +95,13 @@ class Gauge extends BaseOption
         }
     }
 
+    /**
+     * will write update to STDIN
+     *
+     * @param int           $percentage
+     * @param resource      $stdin
+     * @param null|string   $message
+     */
     protected function updateProgressStatus($percentage, $stdin, $message = null)
     {
         if (is_resource($stdin)) {
