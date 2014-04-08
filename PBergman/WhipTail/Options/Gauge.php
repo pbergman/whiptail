@@ -54,6 +54,7 @@ class Gauge extends BaseOption
      */
     public function process($stdin)
     {
+
         if (is_resource($stdin)) {
 
             $advance  = round(100/count($this->callBacks));
@@ -61,25 +62,29 @@ class Gauge extends BaseOption
             $progress = new Progress();
             $progress->setStdin($stdin);
 
-            foreach ($this->callBacks as $id => $callBack) {
+            foreach ($this->callBacks as $id => $callBackObject) {
+
+                list ($callBack, $arguments, $message) = $callBackObject;
 
                 $progress->reset()
                          ->setCurrent($current)
                          ->setLimit($current + $advance);
 
-                array_unshift($callBack[1], $progress);
+                array_unshift($arguments, $progress);
 
-                if( false !== call_user_func_array($callBack[0], $callBack[1])){
+                if (!empty($message)) {
+                    $this->updateProgressStatus($current, $stdin, $message);
+                }
+
+                if( false !== call_user_func_array($callBack, $arguments)){
 
                     $current += $advance;
 
                     if ($id == (count($this->callBacks) - 1)){
-
-                        fwrite($stdin, "100\n");
+                        $this->updateProgressStatus(100, $stdin, $message);
                         fclose($stdin);
-
                     } else {
-                        fwrite($stdin, "$current\n");
+                        $this->updateProgressStatus($current, $stdin, $message);
                     }
 
                 } else {
@@ -89,6 +94,21 @@ class Gauge extends BaseOption
             }
         }
     }
+
+    protected function updateProgressStatus($percentage, $stdin, $message = null)
+    {
+        if (is_resource($stdin)) {
+            if (is_null($message)) {
+                fwrite($stdin, sprintf("%d\n", $percentage));
+            } else {
+                fwrite($stdin, "XXX\n");
+                fwrite($stdin, sprintf("%d\n", $percentage));
+                fwrite($stdin, sprintf("%s\n", $message));
+                fwrite($stdin, "XXX\n");
+            }
+        }
+    }
+
 
     /**
      * @return int
@@ -115,14 +135,15 @@ class Gauge extends BaseOption
     }
 
     /**
-     * @param callable  $callBack
-     * @param mixed     $arguments
+     * @param callable      $callBack
+     * @param mixed         $arguments
+     * @param string|null   $message
      *
      * @return $this
      */
-    public function addCallBack(callable $callBack, $arguments = array())
+    public function addCallBack(callable $callBack, $arguments = array(), $message = null)
     {
-        $this->callBacks[] = array($callBack, $arguments);
+        $this->callBacks[] = array($callBack, $arguments, $message);
 
         return $this;
     }

@@ -107,7 +107,7 @@ class Progress
      *
      * @throws \Exception
      */
-    public function advance()
+    public function advance($message = null)
     {
         if (!is_resource($this->stdin)) {
             throw new \Exception('need to set resource first');
@@ -119,8 +119,14 @@ class Progress
 
         $this->current += ($this->limit-$this->start)/$this->parts;
 
-        fwrite($this->stdin, sprintf("%d\n", round($this->current)));
-
+        if (is_null($message)) {
+            fwrite($this->stdin, sprintf("%d\n", round($this->current)));
+        } else {
+            fwrite($this->stdin, "XXX\n");
+            fwrite($this->stdin, sprintf("%d\n", round($this->current)));
+            fwrite($this->stdin, sprintf("%s\n", $message));
+            fwrite($this->stdin, "XXX\n");
+        }
     }
 
     /**
