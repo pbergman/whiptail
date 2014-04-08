@@ -72,24 +72,22 @@ if (WhipTail::isAvailable()) {
      */
     $whipTail
         ->setOption($whipTail::OPTION_GAUGE)
+        ->setWidth(70)
+        ->setHeight(7)
         ->setBoxOption('title', 'Testing gauge')
-        ->addCallBack(function(){
-            sleep(1);
-        })
-        ->addCallBack(function(PBergman\WhipTail\Helpers\Progress $progress){
+        ->addCallBack(function(){ sleep(1);}, array(), 'Testing')
+        ->addCallBack(function(PBergman\WhipTail\Helpers\Progress $progress, $parts){
 
-            $progress->setParts(5);
+            $progress->setParts($parts);
 
-            for($i = 0; $i < 5; $i++){
+            for($i = 0; $i < $parts; $i++){
                 sleep(1);
-                $progress->advance();
+                $progress->advance('Starting part ' . $i);
             }
 
-        })
-        ->addCallBack(function(){
-            sleep(1);
-        })
-        ->setMessage('doing....');
+        }, array(5), 'Testing 2' )
+        ->addCallBack(function(){ sleep(1);}, array(), 'Testing 3')
+        ->setMessage('Starting....');
 
     $whipTail->run();
 
